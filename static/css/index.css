@@ -1,0 +1,51 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#table-sudoku {
+    border: 2px solid black;
+    width: 450px;
+    height: 450px;
+    border-collapse: collapse;
+}
+
+.tr-bold {
+    border-bottom: 2px solid black;
+}
+
+.td-bold {
+    border-right: 2px solid black;
+}
+
+/*.no-edit {*/
+/*    background-color: #ffddb8;*/
+/*}*/
+
+#table-sudoku td {
+    font-size: 22px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+}
+
+.tr-normal,
+.td-normal {
+    border: 1px solid gray;
+    cursor: default;
+}
+
+.focus-cell:hover {
+    background-color: rgb(255, 192, 70);
+}
+.focus-row,
+.focus-col
+{
+    background-color: rgba(255, 192, 70, 0.2);
+}
+
+
+

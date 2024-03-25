@@ -1,0 +1,3 @@
+SECRET_KEY = '01a439747c9da4e08bc0da93174d764c3d5eed5d'
+DEBUG = True
+THREADED = True
