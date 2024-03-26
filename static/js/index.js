@@ -1,23 +1,3 @@
-function mousePageXY(e)
-	{
-	  var x = 0, y = 0;
-
-	  if (!e) e = window.event;
-
-	  if (e.pageX || e.pageY)
-	  {
-	    x = e.pageX;
-	    y = e.pageY;
-	  }
-	  else if (e.clientX || e.clientY)
-	  {
-	    x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
-	    y = e.clientY + (document.documentElement.scrollTop || document.body.scrollTop) - document.documentElement.clientTop;
-	  }
-
-	  return {"x":x, "y":y};
-	}
-
 
 function create_table(row, col) {
     for (let r = 0; r < row; r++) {
@@ -29,35 +9,43 @@ function create_table(row, col) {
             td.textContent = "0"
 
             td.onmousemove = (event) => {
-                if (!change_cell) {
+                if (!flag_change_cell) {
                     td.classList.add('focus-cell')
                     tr.classList.add('focus-row')
                     for (let y = 0; y < row; y++) table.rows[y].cells[c].classList.add('focus-col')
                 }
-
             }
             td.onmouseleave = (event) => {
-                if (!change_cell) {
+                if (!flag_change_cell) {
                     td.classList.remove('focus-cell')
                     tr.classList.remove('focus-row')
                     for (let y = 0; y < row; y++) table.rows[y].cells[c].classList.remove('focus-col')
                 }
             }
+            td.onwheel = (event) => {
+                if (!flag_change_cell) {
+                    if (event.deltaY > 0 && td.textContent > 1) {
+                        td.textContent = Number(td.textContent) - 1
+                    }
+                    else if (event.deltaY < 0 && td.textContent < 9) {
+                    td.textContent = Number(td.textContent) + 1
+                    }
+                }
+
+
+            }
             td.onclick = (event) =>{
-                let popup = document.getElementById('popup')
-                popup.style.visibility = 'visible'
-
-                console.log(td.getBoundingClientRect())
-
-                let x = td.getBoundingClientRect().x + 50
-                let y = td.getBoundingClientRect().top + 50
-                popup.style.left = x + 'px'
-                popup.style.top = y + 'px'
-
-                // change_cell = true
-                // change_cell_address['x'] = c
-                // change_cell_address['y'] = r
-                // td.classList.add('change')
+                if (!flag_change_cell) {
+                    flag_change_cell = true
+                    change_cell = td
+                    change_cell.classList.add('change')
+                }
+                else {
+                    change_cell.classList.remove('change')
+                    flag_change_cell = false
+                    clear_color()
+                    change_cell = undefined
+                }
             }
             tr.appendChild(td)
         }
@@ -86,9 +74,39 @@ function fill_table(row, col, pole) {
     }
 }
 
+function clear_color() {
+    change_cell.classList.remove('change')
+    document.querySelectorAll('.focus-col').forEach((item) => {
+        item.classList.remove('focus-col')
+    })
+    document.querySelectorAll('.focus-row').forEach((item) => {
+        item.classList.remove('focus-row')
+    })
+}
+
+window.addEventListener('scroll', e => {
+  window.scrollTo({top: 0})
+})
+
+window.addEventListener('keydown', e => {
+    if (change_cell) {
+        if (e.key === 'Escape' && change_cell) {
+            flag_change_cell = false
+            clear_color()
+        }
+        if (e.key === 'Backspace') {
+            change_cell.textContent = ''
+        }
+        if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(Number(e.key))) {
+        change_cell.textContent = e.key
+        }
+    }
+})
+
 let table = document.getElementById('table-sudoku')
-let change_cell = false;
-let change_cell_address = {x: undefined, y: undefined};
+let flag_change_cell = false;
+let change_cell;
+
 create_table(9, 9)
 
 

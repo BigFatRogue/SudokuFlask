@@ -1,6 +1,5 @@
 .content {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -10,6 +9,7 @@
     height: 450px;
     border-collapse: collapse;
 }
+
 #table-sudoku td {
     font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
     font-size: 22px;
@@ -19,6 +19,7 @@
     width: 50px;
     height: 50px;
 }
+
 .tr-bold {
     border-bottom: 2px solid black;
 }
@@ -26,12 +27,6 @@
 .td-bold {
     border-right: 2px solid black;
 }
-
-/*.no-edit {*/
-/*    background-color: #ffddb8;*/
-/*}*/
-
-
 
 .tr-normal,
 .td-normal {
@@ -42,6 +37,7 @@
 .focus-cell:hover {
     background-color: rgb(255, 192, 70);
 }
+
 .focus-row,
 .focus-col
 {
@@ -49,7 +45,10 @@
 }
 
 
-#popup {
-      position: absolute;
-    visibility: hidden;
+.change {
+    background-color: rgb(255, 192, 70);
+}
+
+.button-control {
+    height: 45px;
 }

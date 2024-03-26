@@ -7,15 +7,23 @@
 </head>
 <body>
     <div class="content">
-        <div class="control">
-        </div>
-        <div class="table">
-            <table id="table-sudoku">
-
-            </table>
-        </div>
+        <table id="content">
+            <tr>
+                <td><button class="button-control">ОЧИСТИТь</button></td>
+                <td><button class="button-control">ОЧИСТИТь</button></td>
+                <td><button class="button-control">ОЧИСТИТь</button></td>
+                <td><button class="button-control">ОЧИСТИТь</button></td>
+                <td><button class="button-control">ОЧИСТИТь</button></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <table id="table-sudoku">
+                    </table>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div id="popup">Popup</div>
+
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from SaveGetTxt import get_sudoku_from_file
+from sitting import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
