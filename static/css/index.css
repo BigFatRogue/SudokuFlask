@@ -44,6 +44,12 @@
     background-color: rgba(255, 192, 70, 0.2);
 }
 
+.cell-mistake {
+    background-color: rgba(255, 154, 154, 0.75);
+}
+.cell-mistake:hover {
+    background-color: rgba(255, 154, 154, 0.75);
+}
 
 .change {
     background-color: rgb(255, 192, 70);

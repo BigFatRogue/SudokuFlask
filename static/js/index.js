@@ -23,16 +23,22 @@ function create_table(row, col) {
                 }
             }
             td.onwheel = (event) => {
-                if (!flag_change_cell) {
-                    if (event.deltaY > 0 && td.textContent > 1) {
-                        td.textContent = Number(td.textContent) - 1
+
+                if (!td.classList.value.includes('no-edit') && (!flag_change_cell || (flag_change_cell && change_cell ===td))) {
+                    if (event.deltaY > 0) {
+                        if (td.textContent > 1) {
+                            td.textContent = Number(td.textContent) - 1
+                        }
+                        else if (td.textContent == 1) {
+                            td.textContent = ''
+                        }
                     }
                     else if (event.deltaY < 0 && td.textContent < 9) {
                     td.textContent = Number(td.textContent) + 1
                     }
                 }
-
-
+                if (!check_col()) td.classList.add('cell-mistake')
+                else td.classList.remove('cell-mistake')
             }
             td.onclick = (event) =>{
                 if (!flag_change_cell) {
@@ -47,6 +53,7 @@ function create_table(row, col) {
                     change_cell = undefined
                 }
             }
+
             tr.appendChild(td)
         }
         if (r === 2 || r === 5) tr.className = 'tr-bold'
@@ -103,12 +110,8 @@ window.addEventListener('keydown', e => {
     }
 })
 
-let table = document.getElementById('table-sudoku')
-let flag_change_cell = false;
-let change_cell;
 
-create_table(9, 9)
-
+create_table(rows, cols)
 
 fetch('get_sudoku/' + 21)
     .then(response => response.json())
