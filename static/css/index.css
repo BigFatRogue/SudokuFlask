@@ -1,13 +1,16 @@
 .content {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    /*margin-left: 600px;*/
 }
+
 
 #table-sudoku {
     border: 2px solid black;
     width: 450px;
     height: 450px;
     border-collapse: collapse;
+
 }
 
 #table-sudoku td {
@@ -33,7 +36,9 @@
     border: 1px solid gray;
     cursor: default;
 }
-
+no-edit {
+    font-weight: bold;
+}
 .focus-cell:hover {
     background-color: rgb(255, 192, 70);
 }

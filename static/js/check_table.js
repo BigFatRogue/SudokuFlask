@@ -1,40 +1,35 @@
 function check_row() {
-    // let digit = []
-    // let count = 0
-    // document.querySelectorAll('.focus-row').forEach((item) => {
-    //     let value = item.textContent
-    //     console.log(count, value)
-    //     if (!digit.includes(value)) digit.push(item.textContent)
-    //     else return false
-    //     count += 1
-    // })
-    // return true
+    let digit = []
+    let elements = document.querySelector(".focus-row").children
+    for (let i = 0; i < elements.length; i++) {
+        let value = elements[i].textContent
+        if (value) {
+            if (!digit.includes(value)) digit.push(value)
+            else return false
+        }
+    }
+    return true
 }
 
 function check_col() {
     let digit = []
-    let flag = true
-    document.querySelectorAll('.focus-col').forEach((item) => {
-        let value = item.textContent
+    let elements = document.querySelectorAll('.focus-col')
+    for (let i = 0; i < elements.length; i++) {
+        let value = elements[i].textContent
         if (value) {
-            if (!digit.includes(value)) digit.push(item.textContent)
-            else flag = false
-        }
-    })
-    return flag
-}
-
-function check_sector(x, y) {
-
-}
-
-function check_table() {
-    for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-            let cell = table.rows[y].cells[x]
-            console.log(cell.textContent)
+            if (!digit.includes(value)) digit.push(value)
+            else return false
         }
     }
+    return true
+}
+
+function check_sector() {
+
+}
+
+function check() {
+    return check_col() && check_row()
 }
 
 let table = document.getElementById('table-sudoku')
